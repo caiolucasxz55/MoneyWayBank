@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
-    List<Account> findByHolderCpf(String holderCpf);
+    List<Account> findByCpfHolder(String cpf);
 
-    List<Account> findByHolderCpfAndActiveTrue(String holderCpf);
+    List<Account> findByCpfHolderAndActiveTrue(String cpfHolder);
 }

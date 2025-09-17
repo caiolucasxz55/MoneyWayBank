@@ -4,7 +4,6 @@ package com.fiap.MoneyWayBank.controller;
 import com.fiap.MoneyWayBank.model.Customer;
 import com.fiap.MoneyWayBank.repository.CustomerRepository;
 import com.fiap.MoneyWayBank.service.CustomerService;
-import lombok.CustomLog;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Slf4j
-@RequestMapping("/Customers")
+@RequestMapping("/customers")
 @RestController
 public class CustomerController {
 

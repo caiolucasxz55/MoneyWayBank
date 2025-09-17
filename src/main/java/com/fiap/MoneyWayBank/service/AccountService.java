@@ -26,7 +26,7 @@ public class AccountService {
         }
 
         List<Account> contas = accountRepository
-        .findByHolderCpf(cpf);
+        .findByCpfHolder(cpf);
         if (contas.isEmpty()) {
             throw new RuntimeException("Nenhuma conta encontrada para o CPF: " + cpf);
         }
