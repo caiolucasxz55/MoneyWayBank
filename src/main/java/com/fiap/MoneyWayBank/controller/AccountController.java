@@ -32,7 +32,7 @@ public class AccountController {
 
     @GetMapping("{id}")
     public Account get(@PathVariable Long id ){
-        return getCategoryById(id);
+        return accountService.getCategoryById(id);
     }
 
     @GetMapping("/cpf/{cpf}")
@@ -49,7 +49,7 @@ public class AccountController {
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void destroy (@PathVariable Long id){
-        accountRepository.delete(getCategoryById(id));
+        accountRepository.delete(accountService.getCategoryById(id));
     }
 
     @PutMapping("/cpf/{cpf}/encerrar")
@@ -62,16 +62,12 @@ public class AccountController {
 
     @PutMapping("{id}")
     public Account update(@PathVariable Account accountUpdated, @RequestBody  Long id){
-        getCategoryById(id);
+        accountService.getCategoryById(id);
         accountUpdated.setId(id);
         return accountRepository.save(accountUpdated);
     }
 
-    private Account getCategoryById(Long id) {
-        return accountRepository
-                .findById(id)
-                .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Tarefa não encontrada com id " + id));
-    }
+
 
 
 

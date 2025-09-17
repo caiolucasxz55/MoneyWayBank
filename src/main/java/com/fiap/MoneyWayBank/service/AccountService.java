@@ -33,5 +33,10 @@ public class AccountService {
 
         return contas;
     }
+    public Account getCategoryById(Long id) {
+        return accountRepository
+                .findById(id)
+                .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Tarefa não encontrada com id " + id));
+    }
 
 }
