@@ -20,23 +20,16 @@ public class AccountService {
         return accountRepository.save(account);
     }
 
-    public List<Account> buscarPorCpf(String cpf) {
-        if (cpf == null || cpf.trim().isEmpty()) {
-            throw new IllegalArgumentException("CPF não pode ser vazio");
-        }
-
-        List<Account> contas = accountRepository
-        .findByCpfHolder(cpf);
-        if (contas.isEmpty()) {
-            throw new RuntimeException("Nenhuma conta encontrada para o CPF: " + cpf);
-        }
-
-        return contas;
-    }
-    public Account getCategoryById(Long id) {
+    public Account getAccountById(Long id) {
         return accountRepository
                 .findById(id)
                 .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Tarefa não encontrada com id " + id));
+    }
+
+    public Account deactivateAccount(Long id){
+        var conta = getAccountById(id);
+        conta.setActive(false);
+        return accountRepository.save(conta);
     }
 
 }

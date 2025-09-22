@@ -30,39 +30,26 @@ public class AccountController {
 
     @GetMapping("{id}")
     public Account get(@PathVariable Long id ){
-        return accountService.getCategoryById(id);
-    }
-
-    @GetMapping("/cpf/{cpf}")
-    public List<Account> indexCpf(@PathVariable String cpf){
-        return accountService.buscarPorCpf(cpf);
+        return accountService.getAccountById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Account create(@RequestBody Account account){
         log.info("Creating account " + account);
-        
         return accountService.save(account);
     }
 
-    @DeleteMapping("{id}")
+    @PutMapping("{id}/encerrar")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void destroy (@PathVariable Long id){
-        accountRepository.delete(accountService.getCategoryById(id));
-    }
-
-    @PutMapping("/cpf/{cpf}/encerrar")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void encerrarContasPorCpf(@PathVariable String cpf) {
-        List<Account> contas = accountService.buscarPorCpf(cpf);
-        contas.forEach(conta -> conta.setActive(false));
-        accountRepository.saveAll(contas);
+    public void encerrarContaPorId(@PathVariable Long id) {
+        log.info("Deactivating account with id: " + id);
+        accountService.deactivateAccount(id);
     }
 
     @PutMapping("{id}")
     public Account update(@PathVariable Account accountUpdated, @RequestBody  Long id){
-        accountService.getCategoryById(id);
+        accountService.getAccountById(id);
         accountUpdated.setId(id);
         return accountRepository.save(accountUpdated);
     }
