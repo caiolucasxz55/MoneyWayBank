@@ -17,16 +17,15 @@ import java.util.List;
 public class AccountController {
 
     @Autowired
-    AccountRepository accountRepository;
+    private AccountRepository accountRepository;
 
     @Autowired
-    AccountService accountService;
+    private AccountService accountService;
 
     @GetMapping
     public List<Account> index(){
         return accountRepository.findAll();
     }
-
 
     @GetMapping("{id}")
     public Account get(@PathVariable Long id ){
@@ -42,7 +41,7 @@ public class AccountController {
 
     @PutMapping("{id}/encerrar")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void encerrarContaPorId(@PathVariable Long id) {
+    public void deactivateAccountById(@PathVariable Long id) {
         log.info("Deactivating account with id: " + id);
         accountService.deactivateAccount(id);
     }

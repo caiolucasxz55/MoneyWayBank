@@ -23,7 +23,7 @@ public class AccountService {
     public Account getAccountById(Long id) {
         return accountRepository
                 .findById(id)
-                .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Tarefa não encontrada com id " + id));
+                .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Account not found with id " + id));
     }
 
     public Account deactivateAccount(Long id){

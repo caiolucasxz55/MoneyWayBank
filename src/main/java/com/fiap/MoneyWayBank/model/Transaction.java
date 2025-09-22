@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,6 +18,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 public class Transaction {
 
     @Id
@@ -29,7 +31,6 @@ public class Transaction {
     @ManyToOne
     private Account sourceAccount;
 
-    
     private BigDecimal amount;
     private LocalDateTime transactionDate;
     private TransactionType type;
