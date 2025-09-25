@@ -20,13 +20,13 @@ MoneyWayBank is a simple banking API built with Spring Boot, made for a College 
   - `nameHolder` (String)
   - `cpfHolder` (String)
   - `active` (boolean, true by default) — used to enforce only one active account per CPF
-  - `balance` (BigDecimal) — if present in your model
+  - `balance` (BigDecimal) 
 
 ### Transaction
 - Fields:
   - `id` (Long, PK, generated)
-  - `sourceAccount` (Account) — used for withdrawals and Pix
-  - `targetAccount` (Account) — used for deposits and Pix
+  - `sourceAccount` (Account) 
+  - `targetAccount` (Account) 
   - `amount` (BigDecimal)
   - `transactionDate` (LocalDateTime)
   - `type` (TransactionType: DEPOSIT, WITHDRAWAL, PIX)
