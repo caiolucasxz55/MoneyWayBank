@@ -15,7 +15,7 @@ MoneyWayBank is a simple banking API built with Spring Boot, made for a College 
 ### Account
 Fields:
   - `id` (Long, PK, auto-generated)
-  - `number` (int, positive, required)
+  - `number` (String, not blank, size = 1-20, unique, required)
   - `agency` (String, not blank, required)
   - `nameHolder` (String, not blank, required)
   - `cpfHolder` (String, not blank, 11-14 characters, required)
