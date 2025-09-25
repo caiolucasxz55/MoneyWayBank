@@ -75,7 +75,6 @@ public class TransactionService {
 
         Transaction transaction = Transaction.builder()
             .sourceAccount(account1)
-            .targetAccount(account2)
             .amount(request.amount())
             .type(TransactionType.PIX)
             .transactionDate(LocalDateTime.now())

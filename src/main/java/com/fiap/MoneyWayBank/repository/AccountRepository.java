@@ -9,4 +9,5 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 
     boolean existsByCpfHolderAndActiveTrue(String cpfHolder);
     Optional<Account> findFirstByCpfHolderAndActiveTrue(String cpfHolder);
+    boolean existsByNumber(String number);
 }

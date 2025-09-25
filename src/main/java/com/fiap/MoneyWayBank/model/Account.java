@@ -5,8 +5,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -26,9 +24,10 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Positive(message = "{account.number.positive}")
-    @NotNull(message = "{account.number.notblank}")
-    private int number;
+    @NotBlank(message = "{account.number.notblank}")
+    @Size(min = 1, max = 20, message = "{account.number.size}")
+    @Column(unique = true)
+    private String number;
 
     @NotBlank(message = "{account.agency.notblank}")
     private String agency;
