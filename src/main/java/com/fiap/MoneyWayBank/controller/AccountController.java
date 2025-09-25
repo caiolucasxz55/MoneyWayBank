@@ -4,6 +4,8 @@ package com.fiap.MoneyWayBank.controller;
 import com.fiap.MoneyWayBank.model.Account;
 import com.fiap.MoneyWayBank.repository.AccountRepository;
 import com.fiap.MoneyWayBank.service.AccountService;
+
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,7 +36,7 @@ public class AccountController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Account create(@RequestBody Account account){
+    public Account create(@RequestBody @Valid Account account){
         log.info("Creating account " + account);
         return accountService.save(account);
     }
@@ -45,16 +47,5 @@ public class AccountController {
         log.info("Deactivating account with id: " + id);
         accountService.deactivateAccount(id);
     }
-
-    @PutMapping("{id}")
-    public Account update(@PathVariable Long id, @RequestBody Account accountUpdated){
-        accountService.getAccountById(id);
-        accountUpdated.setId(id);
-        return accountRepository.save(accountUpdated);
-    }
-
-
-
-
 
 }

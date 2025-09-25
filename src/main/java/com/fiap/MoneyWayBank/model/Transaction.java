@@ -2,7 +2,6 @@ package com.fiap.MoneyWayBank.model;
 
 import com.fiap.MoneyWayBank.types.TransactionType;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Positive;
