@@ -1,11 +1,11 @@
 package com.fiap.MoneyWayBank.model;
 
 import com.fiap.MoneyWayBank.types.TransactionType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,7 +31,15 @@ public class Transaction {
     @ManyToOne
     private Account sourceAccount;
 
+    @NotNull(message = "{transaction.amount.notnull}")
+    @Positive(message = "{transaction.amount.positive}")
     private BigDecimal amount;
+
+    @NotNull(message = "{transaction.date.notnull}")
+    @PastOrPresent(message = "{transaction.date.pastorpresent}")
     private LocalDateTime transactionDate;
+
+    @NotNull(message = "{transaction.type.notnull}")
+    @Enumerated(EnumType.STRING)
     private TransactionType type;
 }

@@ -15,8 +15,8 @@ public class HomeController {
     @GetMapping
     public ResponseEntity<String> home() {
         String response = """
-            Projeto: Projeto Bank
-            Integrantes: 
+            Project: Project Bank
+            Members: 
             - Caio Lucas Silva Gomes (RM560077)
             - João Gabriel Fuchs Grecco (RM559863)
             """;

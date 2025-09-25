@@ -7,9 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
-
-
 @Service
 public class AccountService {
 
@@ -17,6 +14,13 @@ public class AccountService {
     private AccountRepository accountRepository;
 
     public Account save(Account account) {
+        if (account.isActive()) {
+            accountRepository.findFirstByCpfHolderAndActiveTrue(account.getCpfHolder())
+                .filter(existing -> !existing.getId().equals(account.getId()))
+                .ifPresent(existing -> {
+                    throw new ResponseStatusException(HttpStatus.CONFLICT, "There is already an active account for this CPF");
+                });
+        }
         return accountRepository.save(account);
     }
 

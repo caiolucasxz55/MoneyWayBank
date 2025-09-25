@@ -39,7 +39,7 @@ public class AccountController {
         return accountService.save(account);
     }
 
-    @PutMapping("{id}/encerrar")
+    @PutMapping("{id}/deactivate")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deactivateAccountById(@PathVariable Long id) {
         log.info("Deactivating account with id: " + id);
@@ -47,7 +47,7 @@ public class AccountController {
     }
 
     @PutMapping("{id}")
-    public Account update(@PathVariable Account accountUpdated, @RequestBody  Long id){
+    public Account update(@PathVariable Long id, @RequestBody Account accountUpdated){
         accountService.getAccountById(id);
         accountUpdated.setId(id);
         return accountRepository.save(accountUpdated);
